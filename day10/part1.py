@@ -1,5 +1,5 @@
 
-test = """"""
+test = """1"""
 
 
 def parser(data):
@@ -7,10 +7,30 @@ def parser(data):
 
 def main(data):
     data = parser(data)
+
+    for _ in range(40):
+        data = process(data)
+    print(len(data))
+
+
+    
+
+def process(data):
+    count = 0
+    current = data[0]
+    final = ""
+    for i in data:
+        if i != current:
+            final += str(count) + current
+            count = 0
+            current = i
+        count += 1
+    final += str(count) + current
+    return(final)
     
 
 
-with open("day10/data.txt") as file:
+with open("data.txt") as file:
     input_data = file.read()
-    main(test)
+    main(input_data)
 
